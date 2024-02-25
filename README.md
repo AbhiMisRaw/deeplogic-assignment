@@ -88,10 +88,15 @@ CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
     ```bash
       python manage.py runserver
     ```
-
+---
+### About celery tasks
+You can look how many tasks are collecting inside the celery queue by running this command. This command will show all the meta information about the task like 
+```bash
+celery -A dataExtractor worker -l info
+```
 
 ----
-## Screenshot
+## Screenshots
 1. File Upload View
 ![image info](./resource/file_upload_view.png)
 
