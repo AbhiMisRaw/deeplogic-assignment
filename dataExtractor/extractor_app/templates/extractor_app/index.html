@@ -4,31 +4,33 @@
 
 {% block content %}
 <div class="container bg-info-subtle ">
-    <div>
-        <h2>
-            Hello <span>World</span>
-        </h2>
-        {% if message %}
-        {{message}}
-        {% endif %}
-    </div>
-    <div class="row ">
+    <div class="row text-center mt-4">
         <h3>Upload files here for data Extraction.</h3>
-        <div class="col-4"></div>
-        <div class="col-8">
-            <form method="post" enctype="multipart/form-data">
+        
+        <div class="col-8 m-5">
+            <form class="mx-auto" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+                
                 {% if form.file_object.errors %}
-            <div class="alert alert-danger">
-                {% for error in form.file_object.errors %}
-                    <strong>{{ error|escape }}</strong><br>
-                {% endfor %}
-            </div>
-        {% endif %}
-                {{ form.as_p }}   
-                <input class="btn btn-primary" type="submit" value="Process">
+                    <div class="alert alert-danger">
+                        {% for error in form.file_object.errors %}
+                            <strong>{{ error|escape }}</strong><br>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                
+                {{ form.file_object}}   
+                <input class="btn btn-primary mt-5" type="submit" value="Process">
             </form>
         </div>
     </div>
 </div>
+
+{% if message %}
+    <div class="container">
+        <div class="alert alert-info mt-4">
+            {{ message }}
+        </div>
+    </div>
+{% endif %}
 {% endblock %}
